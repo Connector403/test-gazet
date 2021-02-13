@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Indexer for every country on the globe" />
+    <meta name="keywords" content="HTML, CSS, Bootstrap, JavaScript, Leaflet, AJAX, JSON, PHP" />
+    <meta name="author" content="Hafizullah Karim" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Gazetteer</title>
+
+    <!-- font -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet.extra-markers.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/weather_card.css" />
+
+</head>
+<!-- -->
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" id="map_parent">
+
+                <!-- Drop down options for country-->
+                <div id="map_sibling_top">
+                    <select id="country_list" onchange="zoomToCountry(this.value)">
+                        <option value="">Select Country</option>
+                    </select>
+                </div>
+
+                <!-- Information about the country-->
+                <div id="country_info">
+                    <div class="card m-10">
+                        <div class="card-header">
+                            <i class="fas fa-arrow-left" style="margin-right: 16px" onclick="hide_popup()"></i>
+                            <h2 style="display: inline" id="country_name"></h2>
+                        </div>
+                        <div class="card-body pb-10" style="overflow-y: auto">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Capital</th>
+                                    <td id="country_capital"></td>
+                                </tr>
+                                <tr>
+                                    <th>Population</th>
+                                    <td id="country_population"></td>
+                                </tr>
+                                <tr>
+                                    <th>Flag</th>
+                                    <td>
+                                        <img src="" style="height: 50px" id="country_flag" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Currency</th>
+                                    <td id="country_currency"></td>
+                                </tr>
+                                <tr>
+                                    <th>Wikipedia Page</th>
+                                    <td>
+                                        <a href="" target="_blank" class="text-dark" id="country_wikipedia">Click Here</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="text-center">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target=""
+                                            onclick="get_covid_data();">
+                                        <i class="fal fa-shield-virus"></i> Covid
+                                    </button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target=""
+                                            onclick="get_weather_data();">
+                                        <i class="fas fa-cloud-sun"></i> Weather
+                                    </button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target=""
+                                            onclick="get_news_data();">
+                                        <i class="far fa-newspaper"></i> News
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu toggle and pop buttons -->
+                <button class="btn btn-primary pull_country_info_popup" onclick="show_popup();">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <!-- Map Leaflet-->
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/spin.min.js"></script>
+    <script src="js/leaflet.spin.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/leaflet.extra-markers.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
